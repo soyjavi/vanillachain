@@ -1,0 +1,15 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb/base",
+  "globals": {
+    "atom": true
+  },
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "global-require": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "max-len": [1, 120, { "tabWidth": 2, "ignoreComments": true }]
+  }
+}
