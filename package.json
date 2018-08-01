@@ -9,6 +9,7 @@
     "crypto-js": "3.1.8",
     "dotenv": "6.0.0",
     "express": "4.16.3",
+    "lowdb": "^1.0.0",
     "monlowdb": "^0.0.2",
     "morgan": "1.9.0",
     "ws": "6.0.0"
@@ -33,7 +34,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "start:dev": "nodemon --watch *.js",
+    "start:dev": "nodemon start --ignore store/*.json",
     "test": "jest",
     "lint": "eslint src/**",
     "release": "release-it"

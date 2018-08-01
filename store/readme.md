@@ -1,1 +1,1 @@
-this folder contains all LowDB files
+this folder contains all blockchains files
