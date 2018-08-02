@@ -14,15 +14,16 @@ export default class Blockchain {
   }
 
   addBlock(data = {}) {
-    const { difficulty, keyChain } = this;
-    const { hash: previousHash } = this.getLatestBlock();
-    const newBlock = new Block({ data, previousHash, difficulty });
+    const { difficulty, keyChain, store } = this;
+    const { hash: previousHash } = this.latestBlock;
 
-    this.store.get(keyChain).push(newBlock).write();
-    this.chain.push(newBlock);
+    store
+      .get(keyChain)
+      .push(new Block({ data, previousHash, difficulty }))
+      .write();
   }
 
-  getLatestBlock() {
+  get latestBlock() {
     return this.chain[this.chain.length - 1];
   }
 }
