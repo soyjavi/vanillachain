@@ -3,7 +3,7 @@ import calculateHash from './calculateHash';
 export default class Block {
   constructor({
     data = {}, difficulty, previousHash,
-  }) {
+  } = {}) {
     this.data = data;
     this.nonce = 0;
     this.previousHash = previousHash;
