@@ -12,14 +12,9 @@ module.exports = {
     'html',
   ],
   testPathIgnorePatterns: [
-    '/node_modules/',
+    '/node_modules',
   ],
-  presets: [['env', { modules: false }]],
-  env: {
-    test: {
-      presets: [['env']],
-    },
-  },
   silent: true,
   testEnvironment: 'jsdom',
+  testURL: 'http://localhost/',
 };
