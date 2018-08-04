@@ -7,7 +7,7 @@ export default class Block {
     this.data = data;
     this.nonce = 0;
     this.previousHash = previousHash;
-    this.timestamp = new Date();
+    this.timestamp = new Date().toISOString();
 
     if (difficulty) this.mine(difficulty);
   }
