@@ -12,4 +12,6 @@ require('babel-register')({
   ],
 });
 require('dotenv').load();
-require('./src');
+
+const { NODE_INSTANCE = 'peer' } = process.env;
+require(`./src/${NODE_INSTANCE}`);
