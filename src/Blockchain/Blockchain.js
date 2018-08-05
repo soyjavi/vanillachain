@@ -1,6 +1,7 @@
 import Block from 'Block';
 
 import Store from './Store';
+import isValidChain from './isValidChain';
 
 export default class Blockchain {
   constructor({ file = 'blockchain', keyChain = 'coin', difficulty = 1 } = {}) {
@@ -16,11 +17,14 @@ export default class Blockchain {
   addBlock(data = {}) {
     const { difficulty, keyChain, store } = this;
     const { hash: previousHash } = this.latestBlock;
+    const newBlock = new Block({ data, previousHash, difficulty });
 
     store
       .get(keyChain)
-      .push(new Block({ data, previousHash, difficulty }))
+      .push(newBlock)
       .write();
+
+    return newBlock;
   }
 
   get latestBlock() {

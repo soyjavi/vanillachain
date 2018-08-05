@@ -2,12 +2,12 @@ import calculateHash from './calculateHash';
 
 export default class Block {
   constructor({
-    data = {}, difficulty, previousHash,
+    data = {}, difficulty, previousHash, timestamp = new Date().toISOString(),
   } = {}) {
     this.data = data;
     this.nonce = 0;
     this.previousHash = previousHash;
-    this.timestamp = new Date().toISOString();
+    this.timestamp = timestamp;
 
     if (difficulty) this.mine(difficulty);
   }
