@@ -3,15 +3,13 @@ import express from 'express';
 import http from 'http';
 import WebSocket from 'ws';
 
-import Block from 'Block';
-import Blockchain from 'Blockchain';
+import cache from './cache';
 import PKG from '../../package.json';
 
 const { NODE_PORT = 3001, NODE_INSTANCE } = process.env;
 const app = express();
 const server = http.createServer(app);
 const ws = new WebSocket('http://localhost:3000');
-const blockchains = {};
 
 const onSocketError = (error) => {
   console.error(error);
@@ -30,34 +28,26 @@ app.get('/', (req, res) => {
 });
 
 app.post('/block', (req, res) => {
-  const { file = 'file', keyChain = 'keyChain', data } = req.body;
-  const key = `${file}:${keyChain}`;
+  const { data, previousHash } = req.body;
+  const blockchain = cache(req.body);
 
-  // -- Cached blockchain
-  let blockchain = blockchains[key];
-  if (!blockchain) {
-    blockchain = new Blockchain({ file, keyChain });
-    blockchains[key] = blockchain;
-  }
-
-  // -- Mine Block
   const { latestBlock: { hash } } = blockchain;
-  const block = new Block({ data, previousHash: hash });
-  block.mine();
+  if (previousHash !== hash) return res.json({ error: 'previousHash is not from the last block' });
 
-  // -- Comunicate to the network
-  // ws.send({
-  //   type: 'NEW_BLOCK', file, keyChain, block,
-  // }, onSocketError);
+  const newBlock = blockchain.addBlock({ data });
+  return res.json(newBlock);
+});
 
-  // Response
-  res.json(block);
+app.get('/block/last', (req, res) => {
+  const blockchain = cache(req.query);
+
+  res.json(blockchain.latestBlock);
 });
 
 // -- Socket Client
 ws.on('open', () => {
-  const data = { type: 'regular', data: 'hello world' };
-  ws.send(JSON.stringify(data), onSocketError);
+  const handshake = { env: { NODE_INSTANCE, port: NODE_PORT } };
+  ws.send(JSON.stringify(handshake), onSocketError);
 });
 
 ws.on('message', (data) => {
