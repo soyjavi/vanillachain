@@ -1,7 +1,5 @@
-import Block from 'Block';
-
+import Block from './Block';
 import Store from './Store';
-import isValidChain from './isValidChain';
 
 export default class Blockchain {
   constructor({ file = 'blockchain', keyChain = 'coin', difficulty = 1 } = {}) {
@@ -14,15 +12,14 @@ export default class Blockchain {
     this.chain = chain;
   }
 
-  addBlock(data = {}) {
-    const { difficulty, keyChain, store } = this;
-    const { hash: previousHash } = this.latestBlock;
-    const newBlock = new Block({ data, previousHash, difficulty });
+  addBlock(data = {}, previousHash) {
+    const {
+      difficulty, keyChain, latestBlock, store,
+    } = this;
 
-    store
-      .get(keyChain)
-      .push(newBlock)
-      .write();
+    // @TODO: Shield blocks
+    const newBlock = new Block({ data, previousHash: latestBlock.hash, difficulty });
+    store.get(keyChain).push(newBlock).write();
 
     return newBlock;
   }

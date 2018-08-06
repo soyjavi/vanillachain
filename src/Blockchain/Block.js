@@ -1,4 +1,4 @@
-import calculateHash from './calculateHash';
+import { calculateHash } from './modules';
 
 export default class Block {
   constructor({
@@ -20,5 +20,3 @@ export default class Block {
     }
   }
 }
-
-export { calculateHash };

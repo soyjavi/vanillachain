@@ -1,4 +1,4 @@
-import { calculateHash } from 'Block';
+import calculateHash from './calculateHash';
 
 export default (chain = []) => {
   for (let i = 1; i < chain.length; i += 1) {

@@ -1,4 +1,9 @@
-import isValidChain from './isValidChain';
+import calculateHash from './modules/calculateHash';
+import Block from './Block';
 
-export { isValidChain };
+export {
+  Block,
+  calculateHash,
+};
+
 export { default } from './Blockchain';

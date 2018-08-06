@@ -3,7 +3,7 @@ import FileSync from 'lowdb/adapters/FileSync';
 import path from 'path';
 import fs from 'fs';
 
-import Block from 'Block';
+import Block from '../Block'; // @TODO: Decouple
 
 export default ({ difficulty, file, keyChain }) => {
   const folder = path.resolve('.', 'store');
