@@ -2,7 +2,7 @@ import Blockchain from 'Blockchain';
 
 global.cache = {};
 
-export default ({ file, keyChain }) => {
+export default ({ file = 'NaiveChain', keyChain = 'demo' }) => {
   const key = `${file}:${keyChain}`;
 
   let blockchain = global.cache[key];

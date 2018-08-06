@@ -1,44 +1,28 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import http from 'http';
-import WebSocket from 'ws';
 
-import broadcast from './broadcast';
-import Socket, { peers } from './socket';
+import home from './home';
+import block from './block';
+import peers from './peers';
+import Socket from './socket';
 import PKG from '../../package.json';
 
 const { NODE_PORT = 3000, NODE_INSTANCE } = process.env;
 const app = express();
 const server = http.createServer(app);
-const socket = Socket(server);
 
-// -- Client
+// -- API
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.json({
-    name: PKG.name,
-    version: PKG.version,
-    stats: {},
-  });
-});
-
-app.post('/block', (req, res) => {
-  broadcast(socket, { block: { hello: 'naivechain' } });
-  res.json({ block: undefined });
-});
-
-app.get('/block/last', (req, res) => {
-  res.json({ lastBlock: 'unknown' });
-});
-
-app.get('/network/peers', (req, res) => {
-  console.log(socket.clients);
-  res.json({ peers });
-});
+app.use('/', home);
+app.use('/block', block);
+app.use('/peers', peers);
 
 // Listen
 server.listen(NODE_PORT, () => {
+  global.wss = Socket(server);
+
   console.log(`${PKG.name} v${PKG.version} ${NODE_INSTANCE}:${NODE_PORT}`);
 });

@@ -1,13 +1,11 @@
 // import url from 'url';
 import WebSocket from 'ws';
 
+import { C } from 'common';
+import { broadcast } from './modules';
 import PKG from '../../package.json';
 
-const TYPE = {
-  LATEST_BLOCK: 'LATEST_BLOCK',
-  ALL_BLOCKS: 'ALL_BLOCKS',
-  ADD_PEER: 'ADD_PEER',
-};
+const { SOCKET: { MESSAGE: { PONG, BLOCK_MINED } } } = C;
 
 const peers = [];
 
@@ -24,7 +22,7 @@ export default (server) => {
 
     ws.send(JSON.stringify({
       message: `Welcome to ${PKG.name} v${PKG.version}`,
-      peers: [],
+      peers,
     }));
 
     ws.on('close', () => {
@@ -33,22 +31,20 @@ export default (server) => {
     });
   });
 
-  wss.on('message', (message = {}) => {
+  wss.on('message', (message) => {
     const { type, data } = JSON.parse(message);
-
     console.log('wss[message]', type, data);
 
-    switch (message.type) {
-      case TYPE.LATEST_BLOCK:
+    switch (type) {
+      case PONG:
         break;
 
-      case TYPE.ALL_BLOCKS:
-        break;
-
-      case TYPE.ADD_PEER:
+      case BLOCK_MINED:
+        broadcast(wss, { type: BLOCK_MINED, data });
         break;
 
       default:
+        // @TODO: Unknown message
         break;
     }
   });
