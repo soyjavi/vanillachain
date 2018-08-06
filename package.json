@@ -35,8 +35,8 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon start --ignore store/*.json",
-    "start:net": "NODE_PORT=3000 NODE_INSTANCE=network yarn run start",
-    "start:peer": "NODE_PORT=3001 NODE_INSTANCE=peer yarn run start",
+    "start:net": "NODE_INSTANCE=network yarn run start",
+    "start:peer": "NODE_INSTANCE=peer yarn run start",
     "test": "jest",
     "lint": "eslint src/**",
     "release": "release-it"
