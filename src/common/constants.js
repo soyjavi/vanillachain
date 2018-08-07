@@ -1,9 +1,14 @@
 export default {
+  ENV: {
+    PRODUCTION: 'production',
+  },
 
   SOCKET: {
     DEFAULT: 'http://localhost:3000',
 
     MESSAGE: {
+      HANDSHAKE: 'handshake',
+
       PING: 'ping',
       PONG: 'pong',
 
