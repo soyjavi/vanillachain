@@ -1,18 +1,19 @@
 import WebSocket from 'ws';
 
 import { C } from 'common';
-// import { block, cache } from './modules';
+import { networkAddress } from './modules';
 import PKG from '../../package.json';
 
-const { SOCKET: { DEFAULT } } = C;
-const { NODE_PORT = 3001, NODE_INSTANCE } = process.env;
+const { SOCKET: { DEFAULT, MESSAGE: { HANDSHAKE } } } = C;
+const { NODE_PORT = 3001 } = process.env;
 const ws = new WebSocket(DEFAULT);
 
 ws.on('open', () => {
   const handshake = {
-    env: { NODE_INSTANCE, port: NODE_PORT },
-    version: PKG.version,
+    type: HANDSHAKE,
+    data: { networkAddress, port: NODE_PORT, version: PKG.version },
   };
+
   ws.send(JSON.stringify(handshake), (error) => {
     console.error('ws.handshake', error);
   });
@@ -31,5 +32,4 @@ ws.on('close', () => {
   console.info('disconnected');
 });
 
-
-export default ws;
+global.ws = ws;
