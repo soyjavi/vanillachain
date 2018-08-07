@@ -1,6 +1,6 @@
 {
   "name": "naivechain",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -35,7 +35,7 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon start --ignore store/*.json",
-    "start:net": "NODE_INSTANCE=network yarn run start",
+    "start:network": "NODE_INSTANCE=network yarn run start",
     "start:peer": "NODE_INSTANCE=peer yarn run start",
     "test": "jest",
     "lint": "eslint src/**",
