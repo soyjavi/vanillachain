@@ -22,7 +22,6 @@ app.use('/peers', peers);
 
 // Listen
 server.listen(NODE_PORT, () => {
-  global.wss = Socket(server);
-
+  global.wss = new Socket(server);
   console.log(`${PKG.name} v${PKG.version} ${NODE_INSTANCE}:${NODE_PORT}`);
 });
