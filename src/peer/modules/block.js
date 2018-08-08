@@ -5,15 +5,13 @@ export default ({
   file, keyChain, data = {}, previousHash, mine = false,
 }) => {
   const blockchain = cache({ file, keyChain });
-  const { latestBlock: { hash } } = blockchain;
+  const { difficulty, latestBlock: { hash } } = blockchain;
   let newBlock;
 
   if (previousHash === hash) {
-    if (!mine) newBlock = blockchain.addBlock({ data });
-    else {
-      newBlock = Block({ data });
-      newBlock.mine();
-    }
+    newBlock = mine
+      ? new Block({ data, difficulty, previousHash })
+      : blockchain.addBlock({ data });
   }
 
   return newBlock;
