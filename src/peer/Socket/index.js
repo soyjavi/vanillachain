@@ -4,13 +4,13 @@ import { C } from 'common';
 import handshake from './handshake';
 import blockPremine from './blockPremine';
 
-const { SOCKET } = C;
-const MESSAGE = {
-  block_premine: blockPremine,
+const { SOCKET: { DEFAULT, MESSAGE } } = C;
+const MESSAGES = {
+  [MESSAGE.BLOCK_PREMINE]: blockPremine,
 };
 
 export default () => {
-  const ws = new WebSocket(SOCKET.DEFAULT);
+  const ws = new WebSocket(DEFAULT);
 
   ws.on('open', () => {
     console.info('Connected to socket.');
@@ -18,10 +18,8 @@ export default () => {
   });
 
   ws.on('message', (message) => {
-    const { type, data } = JSON.parse(message);
-
-    console.log('ws.message', type);
-    if (MESSAGE[type]) MESSAGE[type](data);
+    const { type, data = {} } = JSON.parse(message);
+    if (MESSAGES[type]) MESSAGES[type](data);
   });
 
   ws.on('error', (error) => {

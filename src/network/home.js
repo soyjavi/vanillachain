@@ -20,11 +20,9 @@ router.get('/', (req, res) => {
   });
 });
 
-
-// Endpoints
 router.get('/broadcast', (req, res) => {
-  broadcast({ hello: 'world' });
-  res.json();
+  broadcast({ wss: 'Broadcasting...' });
+  res.json({ broadcast: true });
 });
 
 export default router;

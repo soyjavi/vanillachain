@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 // Endpoints
 router.post('/', (req, res) => {
   const newBlock = block(req.body);
-  return res.json(newBlock || { error: 'previousHash is not from the last block.'});
+  return res.json(newBlock || { error: 'previousHash is not from the last block.' });
 });
 
 router.get('/last', (req, res) => {

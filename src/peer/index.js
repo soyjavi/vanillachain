@@ -4,7 +4,7 @@ import http from 'http';
 
 import home from './home';
 import block from './block';
-import Socket from './socket';
+import Socket from './Socket';
 import PKG from '../../package.json';
 
 const { NODE_PORT = 3001, NODE_INSTANCE } = process.env;

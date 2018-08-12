@@ -19,4 +19,9 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/socket', (req, res) => {
+  global.ws.send(JSON.stringify({ ws: '/socket' }));
+  res.json({ socket: true });
+});
+
 export default router;
