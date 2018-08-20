@@ -1,3 +1,3 @@
 import broadcast from './broadcast';
 
-export { broadcast };
+export { broadcast }; // eslint-disable-line

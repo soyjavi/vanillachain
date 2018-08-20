@@ -1,1 +1,1 @@
-export default ({ store, query = {} }) => [];
+export default () => [];

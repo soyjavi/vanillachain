@@ -1,3 +1,3 @@
 import C from './constants';
 
-export { C };
+export { C }; // eslint-disable-line
