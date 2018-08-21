@@ -5,7 +5,7 @@ import send from './modules/send';
 import PKG from '../../../package.json';
 
 const { SOCKET: { MESSAGE: { HANDSHAKE } } } = C;
-const { NODE_PORT = 3001 } = process.env;
+const { PORT } = process.env;
 
 export default () => {
   const { en0 = [] } = networkInterfaces();
@@ -13,6 +13,6 @@ export default () => {
 
   send({
     type: HANDSHAKE,
-    data: { networkAddress: address, port: NODE_PORT, version: PKG.version },
+    data: { networkAddress: address, port: PORT, version: PKG.version },
   });
 };

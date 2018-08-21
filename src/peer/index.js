@@ -7,7 +7,7 @@ import block from './block';
 import Socket from './Socket';
 import PKG from '../../package.json';
 
-const { NODE_PORT = 3001, NODE_INSTANCE } = process.env;
+const { PORT = 3000, INSTANCE } = process.env;
 const app = express();
 const server = http.createServer(app);
 
@@ -19,7 +19,7 @@ app.use('/', home);
 app.use('/block', block);
 
 // -- Listen
-server.listen(NODE_PORT, () => {
+server.listen(PORT, () => {
   global.ws = new Socket();
-  console.log(`${PKG.name} v${PKG.version} ${NODE_INSTANCE}:${NODE_PORT}`);
+  console.log(`${PKG.name} v${PKG.version} ${INSTANCE}:${PORT}`);
 });

@@ -81,18 +81,30 @@ mine(difficulty = 0) {
 }
 ```
 
+
+## Getting Started
+
+### Configure your environment
+The easiest way for choose your kind of instance is creating a `.env` file in the root of the project. You just to choose the kind of *instance* and its *port* of running.
+
+```
+INSTANCE=network || peer
+PORT=3010
+```
+
+
 ## `Commands`
 
 #### Start the *network* instance (for now we need a broadcasting system)
 ```
-NODE_PORT=3000 yarn start:network
+PORT=3000 INSTANCE=network yarn start
 ```
 
 #### Start some *peer* instances
 ```
-NODE_PORT=3001 yarn start:peer
-NODE_PORT=3002 yarn start:peer
-NODE_PORT=3003 yarn start:peer
+PORT=3001 INSTANCE=peer yarn start
+PORT=3002 INSTANCE=peer yarn start
+PORT=3003 INSTANCE=peer yarn start
 ```
 
 #### Mine some block in an specific *peer*
