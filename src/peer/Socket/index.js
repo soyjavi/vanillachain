@@ -4,13 +4,14 @@ import { C } from 'common';
 import handshake from './handshake';
 import blockPremine from './blockPremine';
 
-const { SOCKET: { DEFAULT, MESSAGE } } = C;
+const { NETWORK } = process.env;
+const { SOCKET: { MESSAGE } } = C;
 const MESSAGES = {
   [MESSAGE.BLOCK_PREMINE]: blockPremine,
 };
 
 export default () => {
-  const ws = new WebSocket(DEFAULT);
+  const ws = new WebSocket(NETWORK);
 
   ws.on('open', () => {
     console.info('Connected to socket.');

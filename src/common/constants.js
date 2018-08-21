@@ -4,8 +4,6 @@ export default {
   },
 
   SOCKET: {
-    DEFAULT: 'http://localhost:3000',
-
     MESSAGE: {
       HANDSHAKE: 'handshake',
 

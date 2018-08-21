@@ -88,8 +88,12 @@ mine(difficulty = 0) {
 The easiest way for choose your kind of instance is creating a `.env` file in the root of the project. You just to choose the kind of *instance* and its *port* of running.
 
 ```
-INSTANCE=network || peer
-PORT=3010
+# Instance configuration
+INSTANCE=network
+PORT=3000
+
+# Network address
+NETWORK=http://localhost:3000
 ```
 
 
