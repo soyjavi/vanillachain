@@ -59,3 +59,4 @@ typings/
 
 # project dynamic files
 store/*.json
+public/*.js

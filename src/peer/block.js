@@ -23,4 +23,9 @@ router.get('/last', (req, res) => {
   else res.status(400).json({ error: 'NaiveChain not found.' });
 });
 
+router.get('/socket', (req, res) => {
+  global.ws.send(JSON.stringify({ ws: '/socket' }));
+  res.json({ socket: true });
+});
+
 export default router;

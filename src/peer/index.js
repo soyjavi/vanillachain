@@ -1,8 +1,9 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import http from 'http';
+import path from 'path';
 
-import home from './home';
+import { routeTerminal } from 'common/routes';
 import block from './block';
 import Socket from './Socket';
 import PKG from '../../package.json';
@@ -15,11 +16,18 @@ const server = http.createServer(app);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', home);
+// -- Endpoints
+app.get('/', routeTerminal);
 app.use('/block', block);
 
+// -- Assets
+app.use(express.static(
+  path.resolve(__dirname, '..', '..', 'public'),
+  { maxAge: '1d' },
+));
+
 // -- Listen
-server.listen(PORT, () => {
+const listener = server.listen(PORT, () => {
   global.ws = new Socket();
-  console.log(`${PKG.name} v${PKG.version} ${INSTANCE}:${PORT}`);
+  console.log(`${PKG.name} v${PKG.version} ${INSTANCE}:${listener.address().port}`);
 });
