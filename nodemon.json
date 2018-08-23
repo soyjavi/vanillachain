@@ -3,18 +3,15 @@
   "ignore": [
     ".git",
     "node_modules/**/node_modules",
+    "src/common/terminal/**",
     "store/**.json"
   ],
   "verbose": false,
   "execMap": {
     "js": "node --harmony"
   },
-  "events": {
-    "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
-  },
   "watch": [
-    "src/**",
-    "test/samples/"
+    "src/**"
   ],
   "env": {
     "NODE_ENV": "development"

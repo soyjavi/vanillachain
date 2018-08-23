@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  overflow: hidden;
+  height: 99.5vh;
+  padding: 0.25vh;
+}

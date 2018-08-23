@@ -1,8 +1,11 @@
 {
+  "extends": "airbnb",
   "parser": "babel-eslint",
-  "extends": "airbnb/base",
   "globals": {
-    "atom": true
+    "document": true,
+    "fetch": true,
+    "webpack": true,
+    "window": true
   },
   "env": {
     "node": true
@@ -11,5 +14,10 @@
     "global-require": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "max-len": [1, 120, { "tabWidth": 2, "ignoreComments": true }]
-  }
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
 }

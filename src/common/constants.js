@@ -1,4 +1,13 @@
+import color  from 'bash-color';
+
+import PKG from '../../package.json';
+
+const { name: NAME, version: VERSION } = PKG;
+
 export default {
+  NAME,
+  VERSION,
+
   ENV: {
     PRODUCTION: 'production',
   },
@@ -15,4 +24,8 @@ export default {
     },
   },
 
+  TERMINAL: {
+    WELCOME: `Welcome to ${ color.wrap(`${NAME} v${VERSION}`, 'white', 'bold')} developer shell.`,
+    HELP: `Type ${color.wrap('help', 'white', 'underline')} for a list of commands.`,
+  },
 };
