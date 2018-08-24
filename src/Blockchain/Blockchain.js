@@ -20,9 +20,10 @@ export default class Blockchain {
       difficulty, keyChain, latestBlock, readMode, store,
     } = this;
 
-    if (readMode) return Error(`The NaiveChain:${keyChain} is in read mode only.`);
-    // @TODO: Shield blocks
-    const newBlock = new Block({ data, previousHash: latestBlock.hash, difficulty });
+    if (readMode) throw Error(`The ${keyChain} is in read mode only.`);
+    if (previousHash !== latestBlock.hash) throw Error('The previous hash is not valid.');
+
+    const newBlock = new Block({ data, previousHash, difficulty });
     store.get(keyChain).push(newBlock).write();
 
     return newBlock;

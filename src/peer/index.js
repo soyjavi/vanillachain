@@ -3,7 +3,7 @@ import express from 'express';
 import http from 'http';
 import path from 'path';
 
-import { routeTerminal } from 'common/routes';
+import { routeError, routeTerminal } from 'common/routes';
 import block from './block';
 import Socket from './Socket';
 import PKG from '../../package.json';
@@ -25,6 +25,9 @@ app.use(express.static(
   path.resolve(__dirname, '..', '..', 'public'),
   { maxAge: '1d' },
 ));
+
+// -- Global Error Handler
+app.use(routeError);
 
 // -- Listen
 const listener = server.listen(PORT, () => {
