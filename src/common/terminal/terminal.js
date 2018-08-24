@@ -10,7 +10,7 @@ import style from './terminal.css'; // eslint-disable-line
 const ENV = JSON.parse(document.getElementById('environment').innerHTML);
 const { ID, INSTANCE, PORT } = ENV;
 const BASH = `${color.wrap(`${ID || INSTANCE}:${PORT}`, 'green', 'bold')} ${color.wrap('$', 'white', 'bold')} `;
-const { NAME, TERMINAL: { HELP, WELCOME } } = C;
+const { TERMINAL: { HELP, WELCOME } } = C;
 
 Terminal.applyAddon(fit);
 const term = new Terminal({ cursorBlink: true, scrollback: 1000, tabStopWidth: 2 });
@@ -41,7 +41,6 @@ term.on('key', async (key) => {
 });
 
 term.on('open', () => {
-  console.log('>>>');
   window.addEventListener('resize', () => {
     clearTimeout(resizedFinished);
     resizedFinished = setTimeout(term.fit, 250);

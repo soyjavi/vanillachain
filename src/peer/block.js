@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { block, cache } from './modules';
+import { Block } from 'Blockchain';
+import { cache } from './modules';
 
 const router = Router();
 
@@ -11,16 +12,28 @@ router.use((req, res, next) => {
 
 // Endpoints
 router.post('/', (req, res) => {
-  const newBlock = block(req.body);
-  return res.json(newBlock || { error: 'previousHash is not from the last block.' });
+  const {
+    file, keyChain, data = {}, previousHash,
+  } = req.body;
+  const { addBlock } = cache({ file, keyChain, readMode: true });
+
+  res.json(addBlock({ data }, previousHash));
+});
+
+router.post('/mine', (req, res) => {
+  const {
+    file, keyChain, data = {}, previousHash,
+  } = req.body;
+  const { difficulty } = cache({ file, keyChain, readMode: true });
+
+  res.json(new Block({ data, difficulty, previousHash }));
 });
 
 router.get('/last', (req, res) => {
   req.query.readMode = true; // @TODO: Use spread operator
   const { latestBlock } = cache(req.query);
 
-  if (latestBlock) res.json(latestBlock);
-  else res.status(400).json({ error: 'NaiveChain not found.' });
+  res.json(latestBlock);
 });
 
 router.get('/socket', (req, res) => {
