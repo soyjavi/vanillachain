@@ -111,7 +111,7 @@ PORT=3002 INSTANCE=peer yarn start
 PORT=3003 INSTANCE=peer yarn start
 ```
 
-#### Mine some block in an specific *peer*
+#### Store a new block in an specific *peer*
 
 We should send a object with:
 
@@ -125,7 +125,15 @@ We should send a object with:
 ```
 
 ```
-curl -H "Content-type:application/json" --data '{"file": "NaiveChain", "keyChain": "myCoin", "data" : "Some data to the first block", "previousHash": "0987f3e9518d09f6e75e9965ab23f1739d56c0b678e08ddff1876ad96e96bbdd"}' http://localhost:3001/block
+curl -H "Content-type:application/json" --data '{"file": "NaiveChain", "keyChain": "myCoin", "data" : "Some data to the first block", "previousHash": "03407ea4418f161744ecc811816530f0dc3b345fc9af6841427f831e3afb46db"}' http://localhost:3001/block
+```
+
+#### Mine a new block in an specific *peer*
+
+If you wanna just *mine* a block and not store it in your blockchain:
+
+```
+curl -H "Content-type:application/json" --data '{"file": "NaiveChain", "keyChain": "myCoin", "data" : "Some data to the first block", "previousHash": "03407ea4418f161744ecc811816530f0dc3b345fc9af6841427f831e3afb46db"}' http://localhost:3001/block/mine
 ```
 
 #### Get the last block mined in an specific *peer*
