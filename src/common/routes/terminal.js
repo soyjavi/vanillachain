@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { C } from 'common';
+
 const { ID, INSTANCE, PORT } = process.env;
 
 export default (req, res) => {
@@ -14,4 +15,4 @@ export default (req, res) => {
     html = html.replace('{{environment}}', JSON.stringify({ ID, INSTANCE, PORT }));
     res.send(html);
   });
-}
+};
