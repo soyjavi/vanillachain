@@ -15,16 +15,16 @@ router.post('/', (req, res) => {
   const {
     file, keyChain, data = {}, previousHash,
   } = req.body;
-  const { addBlock } = cache({ file, keyChain, readMode: true });
+  const blockchain = cache({ file, keyChain });
 
-  res.json(addBlock({ data }, previousHash));
+  res.json(blockchain.addBlock({ data }, previousHash));
 });
 
 router.post('/mine', (req, res) => {
   const {
     file, keyChain, data = {}, previousHash,
   } = req.body;
-  const { difficulty } = cache({ file, keyChain, readMode: true });
+  const { difficulty } = cache({ file, keyChain });
 
   res.json(new Block({ data, difficulty, previousHash }));
 });
