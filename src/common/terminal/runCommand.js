@@ -35,6 +35,6 @@ export default async (instance, queryCommand = '') => new Promise((resolve, reje
         reject('Error connection'); // eslint-disable-line
       });
   } else {
-    resolve({ method: command });
+    resolve({ method: query });
   }
 });
