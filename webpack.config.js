@@ -18,12 +18,11 @@ module.exports = {
       },
       {
         test: /\.(js)$/,
-        exclude: /node_modules/,
-        // use: ['babel-loader'],
         loader: 'babel-loader',
         options: {
           presets: ['env'],
-        }
+          plugins: ['transform-class-properties'],
+        },
       },
     ],
   },

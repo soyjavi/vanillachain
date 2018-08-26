@@ -1,6 +1,6 @@
 {
   "name": "LevelChain",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -11,6 +11,7 @@
     "express": "4.16.3",
     "lowdb": "^1.0.0",
     "morgan": "1.9.0",
+    "vanilla-terminal": "latest",
     "ws": "6.0.0"
   },
   "devDependencies": {
@@ -19,6 +20,7 @@
     "babel-jest": "^23.4.2",
     "babel-loader": "^7.1.0",
     "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
     "babel-preset-env": "^1.7.0",
     "bash-color": "^0.0.4",
     "css-loader": "^0.27.3",
@@ -31,8 +33,7 @@
     "release-it": "^7.4.3",
     "style-loader": "^0.16.1",
     "webpack": "^4.12.0",
-    "webpack-cli": "^3.0.6",
-    "xterm": "^3.6.0"
+    "webpack-cli": "^3.0.6"
   },
   "engines": {
     "node": ">=9.4.0"
