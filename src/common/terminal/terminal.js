@@ -1,16 +1,17 @@
 import VanillaTerminal from 'vanilla-terminal';
 
 import { C } from 'common';
-// import runCommand from './runCommand';
+import commands from './commands';
 import style from './terminal.css'; // eslint-disable-line
 
 const ENV = JSON.parse(document.getElementById('environment').innerHTML);
 const { ID, INSTANCE, PORT } = ENV;
-const { TERMINAL: { HELP, WELCOME } } = C;
+const { NAME, TERMINAL: { WELCOME } } = C;
 
 const terminal = new VanillaTerminal({
+  commands: commands(INSTANCE),
   welcome: WELCOME,
-  prompt: `${ID || INSTANCE}:${PORT} `,
+  prompt: `${NAME} @ <u>${ID || INSTANCE}:${PORT}</u> `,
   separator: '$',
 });
 
