@@ -1,5 +1,11 @@
-# NaiveChain
-❇️~✅~✅~✅~🔠 A distributed database that maintains a continuously growing list of ordered records.
+# VanillaChain
+[![npm](https://img.shields.io/npm/v/vanillachain.svg?style=flat-square)](https://www.npmjs.com/package/vanillachain)
+[![Build Status](http://img.shields.io/travis/soyjavi/vanillachain/master.svg?style=flat-square)](https://travis-ci.org/soyjavi/vanillachain)
+[![dependencies Status](https://david-dm.org/soyjavi/vanillachain/status.svg?style=flat-square)](https://david-dm.org/soyjavi/vanillachain)
+[![devDependencies Status](https://david-dm.org/soyjavi/vanillachain/dev-status.svg?style=flat-square)](https://david-dm.org/soyjavi/vanillachain?type=dev)
+[![NpmLicense](https://img.shields.io/npm/l/vanillachain.svg?style=flat-square)](https://spdx.org/licenses/MIT)
+
+> A distributed database that maintains a continuously growing list of ordered records.
 
 ## Motivation
 All the current implementations of blockchains are tightly coupled with the larger context and problems they (e.g. Bitcoin or Ethereum) are trying to solve. This makes understanding blockchains a necessarily harder task, than it must be. Especially source-code-wisely. This project is an attempt to provide as concise and simple implementation of a blockchain as possible.
@@ -8,7 +14,7 @@ If we look for the definition of blockchain in [Wikipedia](https://en.wikipedia.
 
 > Blockchain is a distributed database that maintains a continuously-growing list of records called blocks secured from tampering and revision.
 
-So we will work on this concept extracting the most important points that NaiveChain has to solve:
+So we will work on this concept extracting the most important points that VanillaChain has to solve:
 
 * Use **HTTP interface** in each node to add new blocks or find them.
 * Use **Websockets** in order to communicate with the network of nodes.
@@ -21,7 +27,7 @@ So we will work on this concept extracting the most important points that NaiveC
 ## Overview
 A blockchain is a public database that consists out of blocks that anyone can read. Nothing special, but they have an interesting property: they are immutable. Once a block has been added to the chain, it cannot be changed anymore without invalidating the rest of the chain.
 
-![NaiveChain text](https://i.imgur.com/N3szdY7.png)
+![VanillaChain text](https://i.imgur.com/N3szdY7.png)
 
 That is the reason why cryptocurrencies are based on blockchains. You don't want people changing their transactions after they've made them!
 
@@ -118,14 +124,14 @@ We should send a object with:
 ```
 {
   data: {...}         // The data you wanna keep in the blockchain
-  file: 'NaiveChain', // The name of the store
-  keyChain: 'myCoin', // The key of your blockchain you wanna use inside your store.
+  file: 'vanilla', // The name of the store
+  keyChain: 'myChain', // The key of your blockchain you wanna use inside your store.
   previousHash: '..', // The last block hash
 }
 ```
 
 ```
-curl -H "Content-type:application/json" --data '{"file": "NaiveChain", "keyChain": "myCoin", "data" : "Some data to the first block", "previousHash": "03407ea4418f161744ecc811816530f0dc3b345fc9af6841427f831e3afb46db"}' http://localhost:3001/block
+curl -H "Content-type:application/json" --data '{"file": "vanilla", "keyChain": "myChain", "data" : "Some data to the first block", "previousHash": "03407ea4418f161744ecc811816530f0dc3b345fc9af6841427f831e3afb46db"}' http://localhost:3001/block
 ```
 
 #### Mine a new block in an specific *peer*
@@ -133,12 +139,12 @@ curl -H "Content-type:application/json" --data '{"file": "NaiveChain", "keyChain
 If you wanna just *mine* a block and not store it in your blockchain:
 
 ```
-curl -H "Content-type:application/json" --data '{"file": "NaiveChain", "keyChain": "myCoin", "data" : "Some data to the first block", "previousHash": "03407ea4418f161744ecc811816530f0dc3b345fc9af6841427f831e3afb46db"}' http://localhost:3001/block/mine
+curl -H "Content-type:application/json" --data '{"file": "vanilla", "keyChain": "myChain", "data" : "Some data to the first block", "previousHash": "03407ea4418f161744ecc811816530f0dc3b345fc9af6841427f831e3afb46db"}' http://localhost:3001/block/mine
 ```
 
 #### Get the last block mined in an specific *peer*
 ```
-curl -G 'http://localhost:3001/block/last' -d 'file=NaiveChain&keyChain=myCoin'
+curl -G 'http://localhost:3001/block/last' -d 'file=vanilla&keyChain=myChain'
 ```
 
 #### Send to all peers a block to mine

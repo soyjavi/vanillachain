@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: ['babel-polyfill', './src/common/terminal/index.js'],
+  entry: ['babel-polyfill', './src/terminal'],
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',

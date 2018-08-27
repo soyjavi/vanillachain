@@ -9,7 +9,7 @@ export default (req, res) => {
   const filePath = path.resolve(__dirname, '..', '..', '..', 'public', 'index.html');
 
   fs.readFile(filePath, 'utf8', (error, html) => {
-    if (error) res.status(400).json({ error: 'NaiveChain not found.' });
+    if (error) res.status(400).json({ error: 'VanillaChain not found.' });
 
     html = html.replace('{{title}}', C.NAME);
     html = html.replace('{{environment}}', JSON.stringify({ ID, INSTANCE, PORT }));

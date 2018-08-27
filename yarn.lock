@@ -1120,10 +1120,6 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
-bash-color@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/bash-color/-/bash-color-0.0.4.tgz#e9be8ce33540cada4881768c59bd63865736e913"
-
 basic-auth@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.0.tgz#015db3f353e02e56377755f962742e8981e7bbba"
@@ -7145,8 +7141,8 @@ validate-npm-package-license@^3.0.1:
     spdx-expression-parse "^3.0.0"
 
 vanilla-terminal@latest:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/vanilla-terminal/-/vanilla-terminal-0.0.4.tgz#83cf340215a7bca06a5f2b635362f9dcf0080bbe"
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/vanilla-terminal/-/vanilla-terminal-0.0.8.tgz#0730f58d2f9dd26c9db6803957fe598343d0619d"
 
 vary@~1.1.2:
   version "1.1.2"
@@ -7391,10 +7387,6 @@ xregexp@4.0.0:
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
-
-xterm@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/xterm/-/xterm-3.6.0.tgz#9b95cd23a338e5842343aec1a104f094c5153e7c"
 
 y18n@^3.2.1:
   version "3.2.1"
