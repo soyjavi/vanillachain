@@ -22,20 +22,20 @@
   "homepage": "https://github.com/soyjavi/vanillachain",
   "bugs": "https://github.com/soyjavi/vanillachain/issues",
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "babel-register": "^6.26.0",
+    "babel-polyfill": "6.26.0",
+    "babel-register": "6.26.0",
     "body-parser": "1.18.3",
     "crypto-js": "3.1.8",
-    "dotenv": "^6.0.0",
+    "dotenv": "6.0.0",
     "express": "4.16.3",
-    "lowdb": "^1.0.0",
+    "lowdb": "1.0.0",
     "morgan": "1.9.0",
-    "vanilla-terminal": "latest",
-    "ws": "6.0.0"
+    "vanilla-terminal": "0.0.9",
+    "ws": "^6.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "^9.0.0",
     "babel-jest": "^23.4.2",
     "babel-loader": "^7.1.0",
     "babel-plugin-module-resolver": "^3.1.1",
@@ -46,19 +46,19 @@
     "eslint-config-airbnb": "latest",
     "eslint-import-resolver-babel-module": "^4.0.0",
     "eslint-plugin-import": "^2.13.0",
-    "jest": "23.4.2",
+    "jest": "^23.5.0",
     "regenerator-runtime": "^0.12.0",
     "release-it": "^7.4.3",
-    "style-loader": "^0.22.1",
+    "style-loader": "^0.23.0",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.6"
   },
   "engines": {
-    "node": ">=9.4.0"
+    "node": "9.x"
   },
   "scripts": {
     "build": "webpack",
-    "start": "node index.js",
+    "start": "webpack && node index.js",
     "test": "jest",
     "lint": "eslint src/**",
     "release": "release-it"
