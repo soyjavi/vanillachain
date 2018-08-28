@@ -15,4 +15,4 @@ const terminal = new Terminal({
   separator: '$',
 });
 
-// terminal.onInput(value => console.log(value));
+terminal.onInput(value => console.log(value));

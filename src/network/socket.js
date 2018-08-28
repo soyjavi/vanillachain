@@ -3,7 +3,7 @@ import WebSocket from 'ws';
 
 import { C } from 'common';
 import { broadcast } from './modules';
-import PKG from '../../package.json';
+// import PKG from '../../package.json';
 
 const { NODE_ENV } = process.env;
 const {

@@ -1,3 +1,3 @@
 import cache from './cache';
 
-export { cache };
+export { cache }; // eslint-disable-line

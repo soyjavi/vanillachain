@@ -11,8 +11,8 @@ export default (req, res) => {
   fs.readFile(filePath, 'utf8', (error, html) => {
     if (error) res.status(400).json({ error: 'VanillaChain not found.' });
 
-    html = html.replace('{{title}}', C.NAME);
-    html = html.replace('{{environment}}', JSON.stringify({ ID, INSTANCE, PORT }));
-    res.send(html);
+    res.send(html
+      .replace('{{title}}', C.NAME)
+      .replace('{{environment}}', JSON.stringify({ ID, INSTANCE, PORT })));
   });
 };
