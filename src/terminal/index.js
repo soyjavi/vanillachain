@@ -1,1 +1,1 @@
-export { default } from './terminal';
+export { default } from './terminal'; // eslint-disable-line
